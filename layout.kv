@@ -1,0 +1,34 @@
+<MyLayout>:
+    BoxLayout:
+        orientation:"vertical"#horizontal
+        size:root.width,root.height
+        spacing:20
+        padding:20
+        Button:
+            text:"Genetic Algorithm" 
+            font_size:20
+            pos_hint:{'center_x':0.5}
+            size_hint:(0.5,0.1)
+        BoxLayout:
+            orientation:"horizontal"
+            size:root.width-200,root.height
+            BoxLayout:
+                id:chess_board
+                orientation:"vertical"
+                    
+            BoxLayout:
+                orientation:"vertical"
+                spacing:20
+                padding:20
+                Button:
+                    text:"Run"
+                    on_press:root.btn()
+                    background_color:
+                Button:
+                    text:"hello"
+                Button:
+                    text:"hello"
+                Button:
+                    text:"hello"
+                Button:
+                    text:"hello"
