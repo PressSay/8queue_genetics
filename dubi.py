@@ -16,7 +16,7 @@ Config.set('graphics','minimum_height','450')
 import random
 
 Builder.load_file('main1.kv')
-def view(board, index):
+def view(board):
     # print("the number of child:",count)
     for i in range(8):
         x = board[i] - 1
@@ -134,12 +134,16 @@ class MyLayout(Widget):
         sound = SoundLoader.load('sound/press.mp3')
         if sound:
             sound.play()
+    def run(self):
+        pass
     def btn(self):
         self.soundPlayer()
-        crossover = random.randint(0,7)
-        solutions = show(1,crossover)
-        for i in range(len(solutions)):
-            view(solutions[i], i)
+        # crossover = random.randint(0,7)
+        # solutions = show(1,crossover)
+        # for i in range(len(solutions)):
+        #     view(solutions[i])
+        # the_last=solutions[len(solutions)-1]
+        # print(the_last)
     def btn2(self):
         self.soundPlayer()
 class MyApp(App):
@@ -148,18 +152,31 @@ class MyApp(App):
     def on_start(self):
         board = self.root.ids.chess_board
         # btn = self.root.btn()
+        crossover = random.randint(0,7)
+        solutions = show(1,crossover)
+        for i in range(len(solutions)):
+            view(solutions[i])
+        main_board=solutions[len(solutions)-1]
+        print(main_board)
+        for i in range(8):
+            print(main_board[i])
+        # photo = Image(file = r"queen_yellow.png")
         for i in range(8):
             board_row = BoxLayout(orientation="horizontal")
-            for j in range(8):
-                board_row.add_widget(Button(background_normal="",
-                    background_color=self.get_color(i,j)))
+            for j in range(1,9):
+                if j==main_board[i]: 
+                    board_row.add_widget(Button(background_normal="queen_bgden.png",background_color=self.get_color(i,j)))#,text="0",color=[255,167,275,1]))
+                    
+                else:
+                    board_row.add_widget(Button(
+                    background_color=self.get_color(i,j),background_normal=""))
             board.add_widget(board_row)
     def get_color(self,i,j):
         is_light_square = (i+j)%2 !=0
         if is_light_square:
-            return[1, 1, 1, 1]
+            return[1, 0, 0, 1]
         else:
-            return[0, 0, 0, 1]
+            return[1, 1, 1, 1]
     
 if __name__=="__main__":
     MyApp().run()
