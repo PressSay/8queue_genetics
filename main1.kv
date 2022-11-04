@@ -1,0 +1,44 @@
+
+<MyLayout>:
+    canvas.before:
+        Color:
+            rgba: .80,30,.40,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation:"vertical"#horizontal
+        size:root.width,root.height
+        spacing:20
+        padding:20
+        Image:
+            allow_stretch: True
+            source: "image/grun8q.png"
+            keep_ratio: False
+            size_hint: 1, .3
+        BoxLayout:
+            orientation:"horizontal"
+            BoxLayout:
+                size_hint: .5,1
+                id:chess_board
+                orientation:"vertical"
+                padding:"30dp"
+            BoxLayout:
+                size_hint:.5,1
+                orientation:"vertical"
+                spacing:20
+                padding:20
+                Button:
+                    background_normal: 'image/Start.png'
+                    background_down: 'image/StartDown.png'
+                    on_press:root.btn()
+                Button:
+                    background_normal: 'image/Reset.png'
+                    background_down: 'image/ResetDown.png'
+                    on_press:root.btn2()
+                Button:
+                    background_normal: 'image/Exit.png'
+                    background_down: 'image/ExitDown.png'
+                    on_press: app.stop()
+
+
